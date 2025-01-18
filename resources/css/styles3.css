@@ -1,0 +1,88 @@
+/* General Styles */
+body {
+  background-color: #ffeb3b;
+  font-family: "Poppins", Arial, sans-serif;
+  margin: 0;
+}
+
+/* Navbar */
+.navbar {
+  background-color: black;
+  color: white;
+}
+
+/* Register Form */
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+.btn {
+  background: linear-gradient(90deg, #ff9800, #f44336);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background: linear-gradient(90deg, #f44336, #ff9800);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    margin: 0 1rem;
+    padding: 1.5rem;
+  }
+
+  .navbar {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .form-container {
+    margin: 0;
+    padding: 1rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+  }
+}
