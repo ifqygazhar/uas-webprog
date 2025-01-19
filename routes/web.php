@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,4 +45,9 @@ Route::controller(DashboardAdminController::class)->middleware(['auth', 'admin']
     Route::post('/dashboard/allusers', 'storeUser');
     Route::get('/dashboard/allusers/{user:username}', 'editUser');
     Route::put('/dashboard/allusers/{user:username}', 'updateUser');
+});
+
+Route::controller(HomeController::class)->middleware(['auth'])->group(function () {
+    Route::get('/home', 'index');
+    Route::get('/detail/{post:slug}', 'showDetail');
 });

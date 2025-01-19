@@ -5,24 +5,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rentalys.id</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="{{ asset('css/styles4.css') }}">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script>
+    // Fungsi untuk mengarahkan pengguna ke halaman yang dituju
+    function redirectTo(route) {
+      window.location.href = `/${route}`;
+    }
+  </script>
 </head>
 
 <body>
   <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">Rentalys.id</a>
-      <button
-        class="btn btn-outline-light"
-        onclick="window.location.href='index.html'">
-        Logout
-      </button>
+      <a class="navbar-brand" href="/">Rentalys.id</a>
+      @auth
+      <div class="d-flex align-items-center">
+        @if (Auth::user()->is_admin)
+        <button class="btn btn-outline-light me-2" id="startButton" onclick="redirectTo('dashboard')">Dashboard</button>
+        @endif
+        <form action="{{ route('logout') }}" method="post" class="d-inline">
+          @csrf
+          <button type="submit" class="btn btn-outline-light">Logout</button>
+        </form>
+      </div>
+      @else
+      <a href="{{ route('login') }}" class="btn btn-outline-light">Login</a>
+      @endauth
     </div>
   </nav>
 
@@ -34,129 +44,34 @@
   <div class="container my-4">
     <div class="row mb-4">
       <div class="col">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Pencarian..."
-          aria-label="Search" />
+        <form action="{{ url('/home') }}" method="GET">
+          <input type="text" class="form-control" placeholder="Pencarian..." name="search" value="{{ request('search') }}" />
+        </form>
       </div>
     </div>
 
     <div class="row">
-      <!-- Card Item 1 -->
+      @foreach ($posts as $post)
       <div class="col-md-3 col-sm-6 mb-4">
         <div class="card text-center">
-          <img
-            src="cos1.jpg"
-            class="card-img-top"
-            alt="Gojo Satoru Clothes" />
+          @if ($post->image)
+          <img src="{{ asset($post->image) }}" class="card-img-top" alt="{{ $post->title }}" />
+          @else
+          <img src="https://source.unsplash.com/500x400?{{ $post->title }}" class="card-img-top" alt="{{ $post->title }}" />
+          @endif
           <div class="card-body">
-            <h5 class="card-title">Gojo Satoru Clothes</h5>
-            <p class="card-text">Rp 200.000</p>
+            <h5 class="card-title">{{ $post->title }}</h5>
+            <p class="card-text">Rp {{ $post->harga }}</p>
             <div class="sizes mb-3">
-              <span class="badge bg-warning text-dark">XXL</span>
-              <span class="badge bg-warning text-dark">XL</span>
-              <span class="badge bg-warning text-dark">L</span>
+              @foreach(json_decode($post->sizes) as $size)
+              <span class="badge bg-warning text-dark">{{ $size }}</span>
+              @endforeach
             </div>
-            <button
-              class="btn btn-dark"
-              onclick="window.location.href='detail.html'">
-              Rental
-            </button>
+            <a href="/detail/{{ $post->slug }}" class="btn btn-dark">Rental</a>
           </div>
         </div>
       </div>
-
-      <!-- Card Item 2 -->
-      <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card text-center">
-          <img
-            src="cos2.jpg"
-            class="card-img-top"
-            alt="Tanjiro Kamado Clothes" />
-          <div class="card-body">
-            <h5 class="card-title">Tanjiro Kamado Clothes</h5>
-            <p class="card-text">Rp 180.000</p>
-            <div class="sizes mb-3">
-              <span class="badge bg-warning text-dark">XL</span>
-              <span class="badge bg-warning text-dark">L</span>
-            </div>
-            <button
-              class="btn btn-dark"
-              onclick="window.location.href='detail.html'">
-              Rental
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card Item 3 -->
-      <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card text-center">
-          <img
-            src="cos3.jpg"
-            class="card-img-top"
-            alt="Nezuko Kamado Clothes" />
-          <div class="card-body">
-            <h5 class="card-title">Nezuko Kamado Clothes</h5>
-            <p class="card-text">Rp 170.000</p>
-            <div class="sizes mb-3">
-              <span class="badge bg-warning text-dark">M</span>
-              <span class="badge bg-warning text-dark">S</span>
-            </div>
-            <button
-              class="btn btn-dark"
-              onclick="window.location.href='detail.html'">
-              Rental
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card Item 4 -->
-      <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card text-center">
-          <img
-            src="cos4.jpg"
-            class="card-img-top"
-            alt="Itadori Yuji Clothes" />
-          <div class="card-body">
-            <h5 class="card-title">Itadori Yuji Clothes</h5>
-            <p class="card-text">Rp 190.000</p>
-            <div class="sizes mb-3">
-              <span class="badge bg-warning text-dark">XXL</span>
-              <span class="badge bg-warning text-dark">XL</span>
-              <span class="badge bg-warning text-dark">M</span>
-            </div>
-            <button
-              class="btn btn-dark"
-              onclick="window.location.href='detail.html'">
-              Rental
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card Item 5 -->
-      <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card text-center">
-          <img src="cos5.jpg" class="card-img-top" alt="Nami Wanpis" />
-          <div class="card-body">
-            <h5 class="card-title">Nami Wanpis</h5>
-            <p class="card-text">Rp 210.000</p>
-            <div class="sizes mb-3">
-              <span class="badge bg-warning text-dark">XXL</span>
-              <span class="badge bg-warning text-dark">XL</span>
-              <span class="badge bg-warning text-dark">L</span>
-            </div>
-            <button
-              class="btn btn-dark"
-              onclick="window.location.href='detail.html'">
-              Rental
-            </button>
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
   </div>
 

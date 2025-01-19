@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/posts">
+                <a class="nav-link" href="/home">
                     <span data-feather="arrow-left" class="align-text-bottom"></span>
                     Back to store
                 </a>
