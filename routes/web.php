@@ -28,8 +28,16 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 
 Route::controller(DashboardAdminController::class)->middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', 'index');
+    Route::get('/dashboard/allposts/checkSlug', 'checkSlug'); // Move this up to avoid slug conflicts
+    Route::get('/dashboard/allposts/create', 'create');
     Route::get('/dashboard/allposts', 'allPostView');
-    Route::delete('/dashboard/allposts/{post:slug}', 'destroyPost');
+    Route::post('/dashboard/allposts', 'store');
+    Route::get('/dashboard/allposts/{post:slug}', 'show');
+    Route::get('/dashboard/allposts/{post:slug}/edit', 'edit');
+    Route::put('/dashboard/allposts/{post:slug}', 'update'); // Fixed this line
+    Route::delete('/dashboard/allposts/{post:slug}', 'destroy');
+
+    // User routes remain the same
     Route::get('/dashboard/allusers', 'allUserView');
     Route::delete('/dashboard/allusers/{user:username}', 'destroyUser');
     Route::get('/dashboard/allusers/create', 'createUser');

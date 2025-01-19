@@ -51,4 +51,9 @@ class User extends Authenticatable
                 ->orWhere('email', 'like', '%' . $search . '%');
         });
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

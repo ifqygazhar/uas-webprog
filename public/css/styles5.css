@@ -1,0 +1,178 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Poppins, sans-serif;
+    background: linear-gradient(120deg, #fff000, #ffd700);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.size-button {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.size-button:hover {
+    background-color: #e2e6ea;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000;
+    color: white;
+    font-size: 1.5em;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.logout {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout:hover {
+    background-color: #ff1a1a;
+}
+
+/* Main container */
+.container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Box Style */
+.box {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+/* Box untuk Gambar */
+.image-box img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Box untuk Deskripsi */
+.description-box h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.description-box ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.description-box ul li {
+    margin-bottom: 5px;
+}
+
+.sizes {
+    margin-top: 15px;
+}
+
+.sizes h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.size-button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #ffe680;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.size-button:hover {
+    background-color: #fff8d1;
+}
+
+/* Box untuk Form */
+.form-box h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.form-box label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-box .total {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.form-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffe680;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.form-box button:hover {
+    background-color: #fff8d1;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #000;
+    color: white;
+    margin-top: auto;
+}
+
+/* Responsivitas */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
