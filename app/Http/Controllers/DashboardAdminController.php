@@ -117,6 +117,7 @@ class DashboardAdminController extends Controller
             'body' => 'required',
             'sizes' => 'required|array', // Validasi sizes sebagai array
             'sizes.*' => 'in:XXL,XL,L,M,S', // Validasi setiap elemen sizes
+            'harga' => 'required',
         ]);
 
         if ($request->file('image')) {
@@ -184,6 +185,7 @@ class DashboardAdminController extends Controller
             'body' => 'required',
             'sizes' => 'required|array', // Validasi sizes sebagai array
             'sizes.*' => 'in:XXL,XL,L,M,S', // Validasi setiap elemen sizes
+            'harga' => 'required',
         ];
 
         if ($request->slug != $post->slug) {

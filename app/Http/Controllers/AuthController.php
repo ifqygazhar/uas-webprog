@@ -30,7 +30,12 @@ class AuthController extends Controller
         if (Auth::attempt($credential)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+
+            if (Auth::user()->is_admin == 1) {
+                return redirect()->intended('dashboard'); // Redirect ke dashboard jika admin
+            } else {
+                return redirect()->intended('home'); // Redirect ke home jika bukan admin
+            }
         }
 
         return back()->with('loginError', 'Email Or Password Is Wrong!');

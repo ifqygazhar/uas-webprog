@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('excerpt');
             $table->text('body');
             $table->json('sizes');
+            $table->string("harga");
             $table->timestamps();
         });
     }

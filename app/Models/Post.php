@@ -17,7 +17,8 @@ class Post extends Model
         'excerpt',
         'image',
         'body',
-        'sizes'
+        'sizes',
+        'harga',
     ];
 
     protected $casts = [

@@ -71,6 +71,18 @@
             <small class="form-text text-muted">Pilih lebih dari satu ukuran jika diperlukan.</small>
         </div>
 
+        <div class="mb-3">
+            <label for="harga" class="form-label">Harga</label>
+            <div class="input-group">
+                <span class="input-group-text">Rp</span>
+                <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" required autofocus value="{{old('harga',$post->harga)}}" oninput="formatRupiah(this)">
+            </div>
+            @error('harga')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
 
 
         <div class="mb-3">
@@ -133,5 +145,17 @@
         }
     }
 </script>
+
+<script>
+    function formatRupiah(input) {
+        let value = input.value.replace(/[^0-9]/g, ''); // Hapus semua karakter non-digit
+        let formatted = new Intl.NumberFormat('id-ID', {
+            style: 'decimal',
+            maximumFractionDigits: 0,
+        }).format(value);
+        input.value = formatted;
+    }
+</script>
+
 
 @endsection
